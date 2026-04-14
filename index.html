@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kinshuk Gupta — AI/ML Engineer</title>
+<meta name="description" content="Kinshuk Gupta portfolio — AI/ML Engineer, IIT Bhilai. Projects in Computer Vision, NLP, and Reinforcement Learning."/>
+<meta property="og:title" content="Kinshuk Gupta — Portfolio"/>
+<meta property="og:description" content="Portfolio showcasing AI/ML projects including Inter IIT × ISRO work, vision-language systems, and reinforcement learning models."/>
+<meta property="og:image" content="https://kinshuk18.github.io/portfolio/preview.png"/>
+<meta property="og:url" content="https://kinshuk18.github.io/portfolio/"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #050508;
+    --surface: #0c0c12;
+    --surface2: #13131d;
+    --border: rgba(255,255,255,0.07);
+    --accent: #e8ff5a;
+    --accent2: #5affd6;
+    --accent3: #ff5a8a;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --tag-bg: rgba(232,255,90,0.08);
+    --tag-border: rgba(232,255,90,0.2);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'DM Mono',monospace;
+    font-weight:300;
+    overflow-x:hidden;
+    cursor:none;
+  }
+
+  /* Custom cursor */
+  .cursor{
+    width:10px;height:10px;
+    background:var(--accent);
+    border-radius:50%;
+    position:fixed;top:0;left:0;
+    pointer-events:none;
+    z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:transform 0.1s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor-ring{
+    width:36px;height:36px;
+    border:1px solid rgba(232,255,90,0.4);
+    border-radius:50%;
+    position:fixed;top:0;left:0;
+    pointer-events:none;
+    z-index:9998;
+    transform:translate(-50%,-50%);
+    transition:transform 0.18s ease, width 0.2s, height 0.2s;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:3px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+
+  /* Nav */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:24px 60px;
+    background:rgba(5,5,8,0.8);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo{
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    font-size:18px;
+    letter-spacing:-0.5px;
+    color:var(--accent);
+  }
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-decoration:none;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--accent);}
+
+  /* Hero */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding:140px 60px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid-bg{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(232,255,90,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,255,90,0.03) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-glow{
+    position:absolute;
+    width:600px;height:600px;
+    background:radial-gradient(circle, rgba(232,255,90,0.06) 0%, transparent 70%);
+    top:-100px;right:-100px;
+    pointer-events:none;
+  }
+  .hero-glow2{
+    position:absolute;
+    width:400px;height:400px;
+    background:radial-gradient(circle, rgba(90,255,214,0.04) 0%, transparent 70%);
+    bottom:0;left:200px;
+    pointer-events:none;
+  }
+  .hero-content{position:relative;z-index:1;max-width:900px;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:32px;
+    animation:fadeUp 0.8s ease both;
+  }
+  .hero-tag::before{
+    content:'';display:block;
+    width:24px;height:1px;background:var(--accent);
+  }
+  .hero-name{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(56px, 9vw, 110px);
+    font-weight:800;
+    line-height:0.95;
+    letter-spacing:-4px;
+    color:#fff;
+    animation:fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-name span{color:var(--accent);}
+  .hero-tagline{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:clamp(18px, 2.5vw, 28px);
+    color:var(--muted);
+    margin:28px 0 20px;
+    font-weight:300;
+    animation:fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-tagline em{color:var(--accent2);font-style:normal;}
+  .hero-intro{
+    font-size:14px;
+    line-height:1.8;
+    color:var(--muted);
+    max-width:580px;
+    animation:fadeUp 0.8s 0.3s ease both;
+    margin-bottom:48px;
+  }
+  .hero-cta{
+    display:flex;gap:16px;flex-wrap:wrap;
+    animation:fadeUp 0.8s 0.4s ease both;
+  }
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);
+    color:#050508;
+    padding:14px 28px;
+    font-family:'DM Mono',monospace;
+    font-size:12px;font-weight:500;
+    letter-spacing:1px;text-transform:uppercase;
+    text-decoration:none;
+    border:none;cursor:none;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,255,90,0.3);}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:14px 28px;
+    font-family:'DM Mono',monospace;
+    font-size:12px;font-weight:400;
+    letter-spacing:1px;text-transform:uppercase;
+    text-decoration:none;cursor:none;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+  .hero-stats{
+    position:absolute;right:60px;bottom:80px;
+    display:flex;gap:48px;
+    animation:fadeUp 0.8s 0.5s ease both;
+  }
+  .stat-item{text-align:right;}
+  .stat-num{
+    font-family:'Syne',sans-serif;
+    font-size:36px;font-weight:800;
+    color:var(--accent);
+    display:block;line-height:1;
+  }
+  .stat-label{
+    font-size:10px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--muted);
+    display:block;margin-top:6px;
+  }
+
+  /* Section commons */
+  section{padding:100px 60px;}
+  .section-label{
+    font-size:10px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:16px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .section-title{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(32px, 5vw, 56px);
+    font-weight:800;
+    letter-spacing:-2px;
+    color:#fff;
+    line-height:1;
+    margin-bottom:60px;
+  }
+
+  /* About */
+  #about{background:var(--surface);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+  .about-text p{
+    font-size:15px;line-height:1.9;
+    color:var(--muted);margin-bottom:20px;
+  }
+  .about-text p strong{color:var(--text);font-weight:500;}
+  .bring-box{
+    background:var(--surface2);
+    border:1px solid var(--border);
+    padding:40px;
+  }
+  .bring-title{
+    font-family:'Syne',sans-serif;
+    font-weight:700;font-size:18px;
+    color:var(--accent);margin-bottom:28px;
+    letter-spacing:-0.5px;
+  }
+  .bring-item{
+    display:flex;gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .bring-item:last-child{border-bottom:none;}
+  .bring-icon{
+    width:36px;height:36px;
+    background:var(--tag-bg);
+    border:1px solid var(--tag-border);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;flex-shrink:0;
+  }
+  .bring-text{font-size:13px;line-height:1.7;color:var(--muted);}
+  .bring-text strong{color:var(--text);}
+
+  /* Skills */
+  #skills{background:var(--bg);}
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+  .skill-group{
+    background:var(--bg);
+    padding:36px 32px;
+  }
+  .skill-group-title{
+    font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:20px;
+    font-weight:500;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tag{
+    font-size:12px;
+    padding:6px 12px;
+    background:var(--tag-bg);
+    border:1px solid var(--tag-border);
+    color:var(--text);
+    transition:background 0.2s;
+  }
+  .skill-tag:hover{background:rgba(232,255,90,0.15);}
+
+  /* Projects */
+  #projects{background:var(--surface);}
+  .projects-list{display:flex;flex-direction:column;gap:2px;}
+  .project-card{
+    background:var(--surface2);
+    border:1px solid var(--border);
+    padding:48px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    transition:border-color 0.3s, background 0.3s;
+    position:relative;
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:'';
+    position:absolute;left:0;top:0;bottom:0;
+    width:3px;
+    background:var(--accent);
+    transform:scaleY(0);
+    transform-origin:top;
+    transition:transform 0.3s ease;
+  }
+  .project-card:hover{border-color:rgba(232,255,90,0.2);background:var(--surface);}
+  .project-card:hover::before{transform:scaleY(1);}
+  .project-card.accent2::before{background:var(--accent2);}
+  .project-card.accent3::before{background:var(--accent3);}
+  .project-num{
+    font-family:'Syne',sans-serif;
+    font-size:11px;letter-spacing:2px;
+    color:var(--muted);margin-bottom:16px;
+    font-weight:600;
+  }
+  .project-name{
+    font-family:'Syne',sans-serif;
+    font-size:26px;font-weight:800;
+    letter-spacing:-1px;color:#fff;
+    margin-bottom:8px;
+  }
+  .project-subtitle{
+    font-size:12px;color:var(--accent);
+    letter-spacing:1.5px;text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  .project-desc{
+    font-size:13px;line-height:1.8;
+    color:var(--muted);margin-bottom:24px;
+    max-width:620px;
+  }
+  .project-metrics{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;}
+  .metric{
+    display:flex;flex-direction:column;
+    background:rgba(232,255,90,0.05);
+    border:1px solid rgba(232,255,90,0.1);
+    padding:12px 20px;
+  }
+  .metric-val{
+    font-family:'Syne',sans-serif;
+    font-size:22px;font-weight:800;
+    color:var(--accent);line-height:1;
+  }
+  .metric-val.c2{color:var(--accent2);}
+  .metric-val.c3{color:var(--accent3);}
+  .metric-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+  .project-tech{display:flex;flex-wrap:wrap;gap:8px;}
+  .tech-tag{
+    font-size:11px;padding:4px 10px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--muted);
+  }
+  .project-rank{
+    text-align:right;
+    align-self:flex-start;
+  }
+  .rank-badge{
+    background:var(--accent);
+    color:#050508;
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    font-size:28px;
+    padding:20px 24px;
+    display:block;
+    line-height:1;
+  }
+  .rank-label{
+    font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--muted);display:block;margin-top:8px;text-align:center;
+  }
+
+  /* Achievements */
+  #achievements{background:var(--bg);}
+  .achievements-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);}
+  .achievement-card{
+    background:var(--bg);
+    padding:40px;
+    transition:background 0.2s;
+    position:relative;
+  }
+  .achievement-card:hover{background:var(--surface2);}
+  .ach-icon{
+    font-size:28px;margin-bottom:20px;display:block;
+  }
+  .ach-title{
+    font-family:'Syne',sans-serif;
+    font-size:18px;font-weight:800;
+    color:#fff;margin-bottom:8px;
+    letter-spacing:-0.5px;
+  }
+  .ach-detail{
+    font-size:13px;color:var(--muted);line-height:1.7;
+  }
+  .ach-detail strong{color:var(--accent);}
+
+  /* CP Section */
+  #cp{background:var(--surface);}
+  .cp-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .cp-platforms{display:flex;flex-direction:column;gap:2px;margin-top:0;}
+  .cp-platform{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 28px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+    transition:border-color 0.2s;
+  }
+  .cp-platform:hover{border-color:rgba(232,255,90,0.2);}
+  .cp-platform-name{font-family:'Syne',sans-serif;font-weight:600;font-size:15px;color:#fff;}
+  .cp-problems{
+    font-family:'DM Mono',monospace;
+    font-size:11px;color:var(--accent);letter-spacing:1px;
+  }
+  .cp-big{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(80px, 14vw, 160px);
+    font-weight:800;
+    letter-spacing:-8px;
+    color:transparent;
+    -webkit-text-stroke:2px rgba(232,255,90,0.25);
+    line-height:0.9;
+    display:block;
+    margin-bottom:8px;
+  }
+  .cp-sub{font-size:14px;color:var(--muted);line-height:1.8;}
+  .cp-sub strong{color:var(--text);}
+
+  /* Experience & Leadership */
+  #experience{background:var(--bg);}
+  .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .exp-list,.lead-list{display:flex;flex-direction:column;gap:2px;}
+  .exp-card{
+    padding:32px;
+    background:var(--surface);
+    border:1px solid var(--border);
+  }
+  .exp-role{
+    font-family:'Syne',sans-serif;
+    font-weight:700;font-size:16px;
+    color:#fff;margin-bottom:4px;
+  }
+  .exp-org{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+  .exp-duration{font-size:11px;color:var(--muted);margin-bottom:16px;}
+  .exp-points{list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .exp-points li{font-size:12px;color:var(--muted);padding-left:16px;position:relative;line-height:1.6;}
+  .exp-points li::before{content:'—';position:absolute;left:0;color:var(--accent);}
+  .subsection-title{
+    font-family:'Syne',sans-serif;
+    font-size:22px;font-weight:800;
+    color:#fff;letter-spacing:-0.5px;
+    margin-bottom:24px;
+  }
+
+  /* Courses */
+  .courses-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;}
+  .course-pill{
+    font-size:12px;padding:8px 16px;
+    border:1px solid var(--border);
+    color:var(--muted);
+  }
+
+  /* Contact */
+  #contact{background:var(--surface);text-align:center;}
+  .contact-inner{max-width:640px;margin:0 auto;}
+  .contact-headline{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(36px, 6vw, 72px);
+    font-weight:800;
+    letter-spacing:-3px;
+    color:#fff;
+    line-height:1;
+    margin-bottom:24px;
+  }
+  .contact-headline span{color:var(--accent);}
+  .contact-sub{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:48px;}
+  .contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .contact-link{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 28px;
+    border:1px solid var(--border);
+    color:var(--text);font-size:13px;
+    text-decoration:none;cursor:none;
+    transition:border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .contact-link:hover{border-color:var(--accent);color:var(--accent);background:var(--tag-bg);}
+  .contact-link.primary{background:var(--accent);color:#050508;border-color:var(--accent);}
+  .contact-link.primary:hover{background:#d4eb50;box-shadow:0 8px 30px rgba(232,255,90,0.3);}
+
+  /* Footer */
+  footer{
+    padding:32px 60px;
+    border-top:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--bg);
+  }
+  footer p{font-size:11px;color:var(--muted);}
+  footer span{font-size:11px;color:var(--muted);}
+
+  /* Animations */
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .fade-in{
+    opacity:0;transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    nav{padding:20px 24px;}
+    .nav-links{display:none;}
+    .hero{padding:120px 24px 80px;}
+    .hero-stats{position:static;margin-top:60px;justify-content:flex-start;}
+    section{padding:80px 24px;}
+    .about-grid,.cp-grid,.exp-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .achievements-grid{grid-template-columns:1fr;}
+    .project-card{grid-template-columns:1fr;}
+    footer{flex-direction:column;gap:12px;padding:24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KG.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Wins</a></li>
+    <li><a href="#cp">CP</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">IIT Bhilai · B.Tech, Data Science & Artificial Intelligence · 2027</div>
+    <h1 class="hero-name">Kinshuk<br/><span>Gupta</span></h1>
+    <p class="hero-tagline">Building systems that <em>see, reason, and decide</em> —<br/>from satellite orbits to emotional intelligence.</p>
+    <p class="hero-intro">
+      AI/ML engineer at the intersection of research depth and engineering rigor. 
+      Twice selected for ISRO problem statements at Inter IIT. 2000+ DSA problems solved. 
+      I don't just write models — I build pipelines that work under real constraints.
+    </p>
+    <div class="hero-cta">
+      <a href="https://mail.google.com/mail/?view=cm&to=kinshukgupta2004@gmail.com" target="_blank" class="btn-primary">↗ Get In Touch</a>
+      <a href="#projects" class="btn-outline">View Projects</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">8.48</span>
+      <span class="stat-label">CGPA</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2K+</span>
+      <span class="stat-label">DSA Solved</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">99.2</span>
+      <span class="stat-label">JEE %ile</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <h2 class="section-title">Who I Am</h2>
+      <p>
+        I'm a third-year undergraduate at <strong>IIT Bhilai</strong>, studying Data Science &amp; AI — 
+        one of India's most rigorous DS/AI programs. My work sits at the overlap of 
+        <strong>computer vision, NLP, and systems engineering</strong>, with real deployments for ISRO and competitive hackathon environments.
+      </p>
+      <p>
+        I operate at every level of the stack: from raw NumPy pipelines over Chandrayaan-2 XRF data, 
+        to training multimodal transformers, to shipping REST APIs with FastAPI. 
+        <strong>I care about results, not just methods.</strong>
+      </p>
+      <p>
+        My competitive programming habit isn't separate from my AI work — it sharpens the way 
+        I think about complexity, edge cases, and system design. <strong>2000+ problems solved</strong> 
+        isn't a number — it's a problem-solving posture.
+      </p>
+
+      <div class="courses-grid">
+        <span class="course-pill">DSA</span>
+        <span class="course-pill">Machine Learning</span>
+        <span class="course-pill">Artificial Intelligence</span>
+        <span class="course-pill">OS</span>
+        <span class="course-pill">DBMS</span>
+        <span class="course-pill">Computer Networks</span>
+        <span class="course-pill">Big Data Analytics</span>
+        <span class="course-pill">Probability & Statistics</span>
+      </div>
+    </div>
+
+    <div class="fade-in">
+      <div class="bring-box">
+        <div class="bring-title">// What I Bring to the Table</div>
+        <div class="bring-item">
+          <div class="bring-icon">⚡</div>
+          <div class="bring-text"><strong>Research × Engineering fusion.</strong> I've processed real satellite data, trained multimodal models, and shipped working pipelines — not toy projects.</div>
+        </div>
+        <div class="bring-item">
+          <div class="bring-icon">🎯</div>
+          <div class="bring-text"><strong>Competitive pressure experience.</strong> Inter IIT Tech Meet twice. ISRO-level problem statements. High-stakes, real deadlines.</div>
+        </div>
+        <div class="bring-item">
+          <div class="bring-icon">🧠</div>
+          <div class="bring-text"><strong>Algorithmic depth.</strong> 2000+ DSA problems means I think about performance, edge cases, and optimization by default.</div>
+        </div>
+        <div class="bring-item">
+          <div class="bring-icon">🔨</div>
+          <div class="bring-text"><strong>Full execution cycle.</strong> Idea → architecture → training → API → evaluation. I own the entire pipeline.</div>
+        </div>
+        <div class="bring-item">
+          <div class="bring-icon">📐</div>
+          <div class="bring-text"><strong>Multi-domain range.</strong> Computer vision, NLP, RL, remote sensing, emotional AI — applied, not theoretical.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Stack</div>
+  <h2 class="section-title fade-in">Technical Arsenal</h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">C</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI / ML Frameworks</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">YOLO-OBB</span>
+        <span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">Transformers</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data & Scientific</div>
+      <div class="skill-tags">
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">SciPy</span>
+        <span class="skill-tag">Astropy</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Backend & Systems</div>
+      <div class="skill-tags">
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">PySpark</span>
+        <span class="skill-tag">HDFS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Databases & Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">QGIS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Core Domains</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Computer Vision</span>
+        <span class="skill-tag">NLP</span>
+        <span class="skill-tag">Reinforcement Learning</span>
+        <span class="skill-tag">Remote Sensing</span>
+        <span class="skill-tag">Feature Engineering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 — Projects</div>
+  <h2 class="section-title fade-in">Selected Work</h2>
+  <div class="projects-list">
+
+    <!-- Vision42 -->
+    <div class="project-card fade-in">
+      <div>
+        <div class="project-num">01 / INTER IIT TECH MEET 14.0 × ISRO</div>
+        <div class="project-name">Vision42</div>
+        <div class="project-subtitle">Multimodal Vision-Language System for Satellite Imagery</div>
+        <p class="project-desc">
+          Designed and built an end-to-end vision-language system capable of image captioning, 
+          Visual Question Answering, and text-driven object grounding — all on satellite data. 
+          The core challenge: rotated objects at arbitrary angles and extreme scale variability across 
+          orbital imagery. Addressed this with a hybrid pipeline coupling YOLO-OBB (Oriented Bounding Box) 
+          detection with a multimodal fusion architecture, served via FastAPI. Evaluated rigorously on IoU 
+          and BLEU-3 against GPU benchmarks under competition constraints.
+        </p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-val">6th</span><span class="metric-label">Rank / All IITs</span></div>
+          <div class="metric"><span class="metric-val">BLEU-3</span><span class="metric-label">NLP Metric</span></div>
+          <div class="metric"><span class="metric-val">IoU</span><span class="metric-label">Detection Metric</span></div>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">YOLO-OBB</span>
+          <span class="tech-tag">Multimodal DL</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">GPU Systems</span>
+        </div>
+        <p style="margin-top:16px;">
+          <a href="https://github.com/Uchihakamal1816/Vision42" target="_blank" class="btn-outline">View Code</a>
+        </p>
+      </div>
+      <div class="project-rank">
+        <span class="rank-badge">#6</span>
+        <span class="rank-label">IIT Rank</span>
+      </div>
+    </div>
+
+    <!-- Lunar -->
+    <div class="project-card accent2 fade-in">
+      <div>
+        <div class="project-num">02 / INTER IIT TECH MEET 13.0 × ISRO</div>
+        <div class="project-name">Lunar Surface Mapping</div>
+        <div class="project-subtitle">Chandrayaan-2 XRF Data Processing Pipeline</div>
+        <p class="project-desc">
+          Processed raw CLASS XRF spectrometer data from Chandrayaan-2 to generate 
+          high-resolution elemental composition maps of the lunar surface. 
+          Designed a custom clustering and spatial filtering pipeline to denoise orbital measurements, 
+          then leveraged PyTorch parallelization to cut processing time by 40%. 
+          Integrated QGIS and Astropy for geospatial analysis and astrometric calibration. 
+          Delivered production-quality lunar maps under competition deadlines.
+        </p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-val c2">40%</span><span class="metric-label">Faster Processing</span></div>
+          <div class="metric"><span class="metric-val c2">11th</span><span class="metric-label">Rank / All IITs</span></div>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">NumPy</span>
+          <span class="tech-tag">SciPy</span>
+          <span class="tech-tag">Astropy</span>
+          <span class="tech-tag">QGIS</span>
+          <span class="tech-tag">Chandrayaan-2</span>
+        </div>
+        <p style="margin-top:16px;">
+          <a href="https://github.com/VDNT11NULL/InterIIT_Tech_Astro" target="_blank" class="btn-outline">View Code</a>
+        </p>
+      </div>
+      <div class="project-rank">
+        <span class="rank-badge" style="background:var(--accent2);">#11</span>
+        <span class="rank-label">IIT Rank</span>
+      </div>
+    </div>
+
+    <!-- CauESC -->
+    <div class="project-card accent3 fade-in">
+      <div>
+        <div class="project-num">03 / RESEARCH PROJECT</div>
+        <div class="project-name">CauESC</div>
+        <div class="project-subtitle">Emotionally Intelligent Dialogue System with RL</div>
+        <p class="project-desc">
+          Built a dialogue model that actually understands emotional context — not through 
+          keyword matching, but through COMET-based commonsense reasoning integrated with 
+          persona-conditioned generation. Introduced the Persona Attention Loop (PAL) architecture 
+          to maintain consistent persona across conversation turns. Trained in two stages: 
+          MLE on a pointer-generator network, then REINFORCE-based RL to optimize for 
+          non-differentiable dialogue quality metrics. Outperforms baselines across BLEU-4 and ROUGE-L.
+        </p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-val c3">3.92</span><span class="metric-label">BLEU-4</span></div>
+          <div class="metric"><span class="metric-val c3">16.91</span><span class="metric-label">ROUGE-L</span></div>
+          <div class="metric"><span class="metric-val c3">PAL</span><span class="metric-label">Novel Architecture</span></div>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">Transformers</span>
+          <span class="tech-tag">REINFORCE RL</span>
+          <span class="tech-tag">COMET</span>
+          <span class="tech-tag">Pointer-Generator</span>
+        </div>
+        <p style="margin-top:16px;">
+          <a href="https://github.com/kinshuk18/CauESC-Persona-Attention-RL" target="_blank" class="btn-outline">View Code</a>
+        </p>
+      </div>
+      <div class="project-rank">
+        <span class="rank-badge" style="background:var(--accent3);">PAL</span>
+        <span class="rank-label">Novel Arch</span>
+      </div>
+    </div>
+
+    <!-- StudySphere -->
+    <div class="project-card fade-in">
+      <div>
+        <div class="project-num">04 / HACKATHON — THE FORGE × OPENAKE × GDG</div>
+        <div class="project-name">StudySphere</div>
+        <div class="project-subtitle">Productivity Platform with Focus Efficiency Algorithm</div>
+        <p class="project-desc">
+          Designed and shipped a full productivity platform during The Forge hackathon (Meraz 6.0). 
+          Core innovation: a custom <strong>Focus Efficiency Algorithm</strong> that quantifies user behavior 
+          patterns — beyond simple time tracking — to surface meaningful productivity insights. 
+          Built on React + Vite, deployed and demonstrated live. Secured 3rd position.
+        </p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-val">3rd</span><span class="metric-label">Hackathon Rank</span></div>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Vite</span>
+          <span class="tech-tag">Custom Algorithm</span>
+        </div>
+        <p style="margin-top:16px;">
+          <a href="https://github.com/kinshuk18/Study-Sphere" target="_blank" class="btn-outline">View Code</a>
+        </p>
+      </div>
+      <div class="project-rank">
+        <span class="rank-badge">#3</span>
+        <span class="rank-label">Hackathon</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label">04 — Achievements</div>
+  <h2 class="section-title fade-in">Competitive Record</h2>
+  <div class="achievements-grid fade-in">
+    <div class="achievement-card">
+      <span class="ach-icon">🏆</span>
+      <div class="ach-title">JEE Main — 99.20 Percentile</div>
+      <div class="ach-detail">Top <strong>0.8%</strong> nationally. Among ~1.2M candidates. Placed in the highest performance tier for India's most competitive engineering entrance.</div>
+    </div>
+    <div class="achievement-card">
+      <span class="ach-icon">🎯</span>
+      <div class="ach-title">JEE Advanced — AIR 6309</div>
+      <div class="ach-detail">Cleared JEE Advanced with <strong>All India Rank 6309</strong>, qualifying for IIT admission — an exam with ~160K participants and a sub-10% selection rate.</div>
+    </div>
+    <div class="achievement-card">
+      <span class="ach-icon">🛰️</span>
+      <div class="ach-title">Inter IIT Tech Meet 14.0 — 6th Rank</div>
+      <div class="ach-detail">ISRO problem statement on satellite vision-language AI. <strong>6th across all IITs.</strong> Competed against the best technical minds in India under real-world space tech constraints.</div>
+    </div>
+    <div class="achievement-card">
+      <span class="ach-icon">🌕</span>
+      <div class="ach-title">Inter IIT Tech Meet 13.0 — 11th Rank</div>
+      <div class="ach-detail">ISRO problem statement on Chandrayaan-2 data processing. <strong>11th across all IITs.</strong> Processed real mission data under competitive deadlines.</div>
+    </div>
+    <div class="achievement-card">
+      <span class="ach-icon">⚡</span>
+      <div class="ach-title">IICPC 2025 — Finalist, Rank 1102</div>
+      <div class="ach-detail">InterCollegiate Informatic and Competitive Programming Camp Private Limited. <strong>National finalist</strong> in one of India's premier competitive programming competitions. Top tier algorithmic problem-solving under time pressure.</div>
+    </div>
+    <div class="achievement-card">
+      <span class="ach-icon">🔨</span>
+      <div class="ach-title">The Forge Hackathon — 3rd Position</div>
+      <div class="ach-detail">OpenLake × GDG at Meraz 6.0. <strong>3rd place</strong> building StudySphere — a productivity platform with custom behavioral analytics algorithm, shipped in competition timeframe.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CP -->
+<section id="cp">
+  <div class="section-label">05 — Competitive Programming</div>
+  <div class="cp-grid fade-in">
+    <div>
+      <span class="cp-big">2K+</span>
+      <h3 class="section-title" style="margin-bottom:16px;font-size:clamp(24px,3vw,36px)">Problems Solved</h3>
+      <p class="cp-sub">
+        2000+ problems across Codeforces, CodeChef, LeetCode, and GeeksforGeeks. 
+        <strong>This isn't a metric — it's a mindset.</strong> Every problem is a lesson in 
+        edge-case awareness, time complexity intuition, and clean implementation under pressure. 
+        The same habits that make competitive programmers sharp make engineers reliable.
+      </p>
+    </div>
+    <div>
+      <div class="cp-platforms">
+        <div class="cp-platform">
+          <span class="cp-platform-name">Codeforces</span>
+          <span class="cp-problems">Active Competitor</span>
+        </div>
+        <div class="cp-platform">
+          <span class="cp-platform-name">CodeChef</span>
+          <span class="cp-problems">Rated</span>
+        </div>
+        <div class="cp-platform">
+          <span class="cp-platform-name">LeetCode</span>
+          <span class="cp-problems">Interview-Ready</span>
+        </div>
+        <div class="cp-platform">
+          <span class="cp-platform-name">GeeksforGeeks</span>
+          <span class="cp-problems">Practice</span>
+        </div>
+        <div class="cp-platform" style="border-top:2px solid var(--accent);">
+          <span class="cp-platform-name" style="color:var(--accent);">IICPC 2025</span>
+          <span class="cp-problems" style="color:var(--accent);">Rank 1102 — Finalist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE & LEADERSHIP -->
+<section id="experience">
+  <div class="section-label">06 — Experience & Leadership</div>
+  <div class="exp-grid fade-in">
+    <div>
+      <h3 class="subsection-title">Experience</h3>
+      <div class="exp-list">
+        <div class="exp-card">
+          <div class="exp-role">Campus Ambassador</div>
+          <div class="exp-org">Naukri Campus</div>
+          <div class="exp-duration">2025 – Present</div>
+          <ul class="exp-points">
+            <li>Drove hiring initiative visibility and competition participation across various colleges</li>
+            <li>Increased student engagement with placement resources and career competitions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="subsection-title">Leadership & Activities</h3>
+      <div class="lead-list">
+        <div class="exp-card">
+          <div class="exp-role">Mentor Coordinator</div>
+          <div class="exp-org">Student Mentorship Programme · IIT Bhilai</div>
+          <div class="exp-duration">2025–26</div>
+          <ul class="exp-points">
+            <li>Coordinated the mentorship structure for incoming students across batches</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-role">Event Coordinator</div>
+          <div class="exp-org">Meraz (4.0, 5.0, 6.0) — Annual Tech Fest</div>
+          <div class="exp-duration">3 Editions</div>
+          <ul class="exp-points">
+            <li>Organized events across 3 consecutive fest editions</li>
+            <li>Managed end-to-end coordination for informal-cultural-tech events</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-role">Core Member</div>
+          <div class="exp-org">Ingenuity Club · DSAI Club · Swara · Quizzotica</div>
+          <div class="exp-duration">2024-26</div>
+          <ul class="exp-points">
+            <li>Active in competitive programming club, DSAI Club, Music and Quizzing Club</li>
+            <li>Contributed to peer technical development and knowledge sharing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner fade-in">
+    <div class="section-label" style="justify-content:center;">07 — Contact</div>
+    <h2 class="contact-headline">Let's Build<br/>Something <span>Real.</span></h2>
+    <p class="contact-sub">
+      Open to research collaborations, internship opportunities, and high-impact roles in 
+      AI/ML engineering. If you're working on problems worth solving, I want to hear about them.
+    </p>
+    <p class="contact-sub">
+      Open to internships and high-impact roles in AI/ML and software engineering, where I can work on real-world systems and challenging problems.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:kinshukgupta2004@gmail.com" class="contact-link primary">
+        ↗ kinshukgupta2004@gmail.com
+      </a>
+      <a href="tel:+919479003023" class="contact-link">
+        +91 94790 03023
+      </a>
+      <a href="https://github.com/kinshuk18" target="_blank" class="contact-link">
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/kinshukgupta18/" target="_blank" class="contact-link">
+        LinkedIn
+      </a>
+      <a href="https://drive.google.com/file/d/1wq9o3TZebw979Eyd6d3Ydusk88_Z4RM5/view?usp=sharing" target="_blank" class="contact-link primary">
+        View Resume
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Kinshuk Gupta · IIT Bhilai · B.Tech DSAI · 2027</p>
+  <span>Built with precision.</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  function animateCursor(){
+    cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+    rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Intersection observer for fade-in
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+  // Smooth scroll offset for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+</script>
+</body>
+</html>
